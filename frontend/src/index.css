@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Colour tokens as RGB triplets, so Tailwind can add opacity (bg-accent/20). */
+:root,
+:root[data-theme="dark"] {
+  --bg: 24 25 23;
+  --surface: 30 31 29;
+  --surface-2: 41 42 39;
+  --border: 74 76 70;
+  --text: 241 239 230;
+  --text-muted: 170 168 157;
+  --accent: 255 205 40;
+  --on-accent: 20 20 16;
+  --success: 98 196 142;
+  --warning: 255 143 58;
+  --danger: 255 98 92;
+  --path: 110 204 219;
+  color-scheme: dark;
+}
+
+/* Light theme: a printed timetable, black ink on station grey. */
+:root[data-theme="light"] {
+  --bg: 239 241 237;
+  --surface: 249 250 248;
+  --surface-2: 225 228 222;
+  --border: 178 182 173;
+  --text: 22 24 21;
+  --text-muted: 85 89 82;
+  --accent: 22 24 21;
+  --on-accent: 255 213 58;
+  --success: 18 112 68;
+  --warning: 176 82 0;
+  --danger: 190 28 36;
+  --path: 0 104 134;
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply bg-bg text-text font-sans antialiased;
+}
+
+/* Smooth colour cross-fade when the theme changes. */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, fill 200ms ease,
+    stroke 200ms ease !important;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sections are separated by a heavy rule, like a timetable. */
+.card {
+  @apply border-t-2 border-text;
+}
+
+.focus-ring {
+  @apply outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  outline-style: none;
+}
+
+.focus-ring:focus-visible {
+  outline-style: solid;
+}
+
+/* Split-flap boards use the signage typeface instead of a system mono. */
+.split-flap-text {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+
+.skeleton {
+  background: repeating-linear-gradient(135deg, rgb(var(--surface-2)) 0 8px, rgb(var(--surface)) 8px 16px);
+  background-size: 200% 200%;
+  animation: tape 8s linear infinite;
+}
+
+@keyframes tape {
+  to { background-position: 181px 0; }
+}
+
+@keyframes hazard-pulse {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
+.hazard-pulse {
+  animation: hazard-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ping-ring {
+  from { transform: scale(0.4); opacity: 0.9; }
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+.ping-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ping-ring 1.1s ease-out forwards;
+}
+
+.line-nav {
+  scrollbar-width: none;
+}
+
+.line-nav::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

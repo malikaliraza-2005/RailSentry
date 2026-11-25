@@ -1,0 +1,7 @@
+Layout,Layout name,Mode,Successful target,Path length,Travel cost,Response time,Risk encountered,Re-plans,Performance
+1,Normal Layout,Without predictions,1.0,25.4,27.1,40.3,5.1,1.0,3.7
+1,Normal Layout,With predictions,1.0,25.6,28.3,28.3,0.0,1.0,66.7
+2,Obstacle-Heavy Layout,Without predictions,1.0,26.4,28.2,36.2,3.1,1.0,27.8
+2,Obstacle-Heavy Layout,With predictions,1.0,26.2,29.4,29.8,0.2,1.0,63.2
+3,Unreachable-Goal Layout,Without predictions,0.0,0.0,,,0.0,0.0,0.0
+3,Unreachable-Goal Layout,With predictions,0.0,0.0,,,0.0,0.0,0.0
